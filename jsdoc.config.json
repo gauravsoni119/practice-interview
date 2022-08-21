@@ -1,0 +1,16 @@
+{
+    "source": {
+        "include": ["./dist/ds"],
+        "includePattern": ".+\\.js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": ["plugins/markdown"],
+    "opts": {
+        "recurse": true,
+        "encoding": "utf8",
+        "template": "node_modules/minami",
+        "destination": "./docs/",
+        "private": false,
+        "readme": "./readme.md"
+    }
+}
