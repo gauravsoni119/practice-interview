@@ -1,4 +1,45 @@
-"use strict";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linked-list.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html">LinkedList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#merge">merge</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#recursiveReverse">recursiveReverse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#reverse">reverse</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_linked-list-ListNode.html">ListNode</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-ds_linked-list.html">ds/linked-list</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">linked-list.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
 /**
  * Linked List
  *
@@ -62,13 +103,13 @@ class LinkedList {
     }
     /**
      * Given the head of a singly linked list, reverse the list, and return the reversed list.
-     * <br />
+     * &lt;br />
      * For example,
-     * <br />
-     * <b>Input:</b> 1 -> 2 -> 3 -> 4 -> 5
-     * <br />
-     * <b>Output:</b> 5 -> 4 -> 3 -> 2 -> 1
-     * <br />
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> 1 -> 2 -> 3 -> 4 -> 5
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 5 -> 4 -> 3 -> 2 -> 1
+     * &lt;br />
      *
      * @method
      * @see {@link https://leetcode.com/problems/reverse-linked-list/|Reverse Linked List}
@@ -97,13 +138,13 @@ class LinkedList {
     }
     /**
      * Given the head of a singly linked list, reverse the list, and return the reversed list.
-     * <br />
+     * &lt;br />
      * For example,
-     * <br />
-     * <b>Input:</b> 1 -> 2 -> 3 -> 4 -> 5
-     * <br />
-     * <b>Output:</b> 5 -> 4 -> 3 -> 2 -> 1
-     * <br />
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> 1 -> 2 -> 3 -> 4 -> 5
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 5 -> 4 -> 3 -> 2 -> 1
+     * &lt;br />
      *
      * @method
      * @see {@link https://leetcode.com/problems/reverse-linked-list/|Reverse Linked List}
@@ -136,13 +177,13 @@ class LinkedList {
      * You are given the heads of two sorted linked lists list1 and list2.Merge the two lists in a one sorted list.
      * The list should be made by splicing together the nodes of the first two lists.
      * Return the head of the merged linked list.
-     * <br />
+     * &lt;br />
      * For example,
-     * <br />
-     * <b>Input:</b> list1 = 1 -> 2 -> 4 , list2 = 1 -> 3 -> 4
-     * <br />
-     * <b>Output:</b> 1 -> 1 -> 2 -> 3 -> 4 -> 4
-     * <br />
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> list1 = 1 -> 2 -> 4 , list2 = 1 -> 3 -> 4
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 1 -> 1 -> 2 -> 3 -> 4 -> 4
+     * &lt;br />
      *
      * @method
      * @see {@link https://leetcode.com/problems/merge-two-sorted-lists/|Merge Two Sorted Lists}
@@ -160,8 +201,8 @@ class LinkedList {
         if (!curr1 || !curr2) {
             return newList;
         }
-        while (curr1 && curr2) {
-            if (curr1.data <= curr2.data) {
+        while (curr1 &amp;&amp; curr2) {
+            if (curr1.data &lt;= curr2.data) {
                 newList.push(curr1.data);
                 curr1 = curr1.next;
             }
@@ -177,3 +218,22 @@ class LinkedList {
     }
 }
 exports.LinkedList = LinkedList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Fri Aug 26 2022 11:49:17 GMT+0200 (Central European Summer Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
