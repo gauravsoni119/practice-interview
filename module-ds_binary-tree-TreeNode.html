@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ListNode - Documentation</title>
+    <title>TreeNode - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListNode</h1>
+    <h1 class="page-title">TreeNode</h1>
     
 
     
@@ -42,12 +42,12 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-ds_linked-list.html">ds/linked-list</a>~</span>
+            <span class="ancestors"><a href="module-ds_binary-tree.html">ds/binary-tree</a>~</span>
         
-        ListNode
+        TreeNode
         </h2>
         
-            <div class="class-description"><p>A node inside a linked list.</p></div>
+            <div class="class-description"><p>A node inside a AV: tree.</p></div>
         
     
 </header>
@@ -62,7 +62,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="ListNode"><span class="type-signature"></span>new ListNode<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="TreeNode"><span class="type-signature"></span>new TreeNode<span class="signature">(val)</span><span class="type-signature"></span></h4>
 
     
 
@@ -101,7 +101,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="linked-list.js.html">linked-list.js</a>, <a href="linked-list.js.html#line23">line 23</a>
+        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -145,7 +145,7 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>val</code></td>
             
 
             <td class="type">
@@ -162,7 +162,7 @@
             
 
             <td class="description last">
-                <p>The value stored in the linked list</p>
+                <p>The value stored in the AV: tree</p>
                 
             </td>
         </tr>
@@ -206,13 +206,13 @@
         
             
 <div class="section-members">
-<h4 class="name" id="next"><span class="type-signature"></span>next<span class="type-signature"> :ListNode</span></h4>
+<h4 class="name" id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    <p>Next node</p>
+    <p>Height of the node</p>
 </div>
 
 
@@ -248,7 +248,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="linked-list.js.html">linked-list.js</a>, <a href="linked-list.js.html#line29">line 29</a>
+        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -265,7 +265,7 @@
     <ul>
         <li>
             
-<span class="param-type"><code>ListNode</code></span>
+<span class="param-type"><code>number</code></span>
 
 
         </li>
@@ -280,13 +280,13 @@
         
             
 <div class="section-members">
-<h4 class="name" id="prev"><span class="type-signature"></span>prev<span class="type-signature"> :ListNode</span></h4>
+<h4 class="name" id="left"><span class="type-signature"></span>left<span class="type-signature"> :TreeNode</span></h4>
 
 
 
 
 <div class="description">
-    <p>Previous node</p>
+    <p>Left node</p>
 </div>
 
 
@@ -322,7 +322,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="linked-list.js.html">linked-list.js</a>, <a href="linked-list.js.html#line34">line 34</a>
+        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -339,7 +339,81 @@
     <ul>
         <li>
             
-<span class="param-type"><code>ListNode</code></span>
+<span class="param-type"><code>TreeNode</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="right"><span class="type-signature"></span>right<span class="type-signature"> :TreeNode</span></h4>
+
+
+
+
+<div class="description">
+    <p>Right node</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>TreeNode</code></span>
 
 
         </li>

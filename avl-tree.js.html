@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>avl-tree.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html">AVLTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#.isSameTree">isSameTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#getDiameter">getDiameter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#getHeight">getHeight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#insert">insert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#invert">invert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_binary-tree-AVLTree.html#isBalanced">isBalanced</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_binary-tree-TreeNode.html">TreeNode</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html">LinkedList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#.merge">merge</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#recursiveReverse">recursiveReverse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-ds_linked-list-LinkedList.html#reverse">reverse</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-ds_linked-list-ListNode.html">ListNode</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-ds_binary-tree.html">ds/binary-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-ds_linked-list.html">ds/linked-list</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">avl-tree.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * Binary Tree
+ *
+ * @example
+ * const linkedList = require('binary-tree');
+ *
+ * @author Gaurav Soni
+ *
+ * @module ds/binary-tree
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AVLTree = exports.TreeNode = void 0;
+/**
+ * A node inside a AV: tree.
+ *
+ * @public
+ * @constructor
+ *
+ * @param {unknown} val - The value stored in the AV: tree
+ */
+class TreeNode {
+    constructor(value, left, right, height) {
+        /**
+         * Left node
+         * @member {TreeNode}
+         */
+        this.left = null;
+        /**
+         * Right node
+         * @member {TreeNode}
+         */
+        this.right = null;
+        /**
+         * Height of the node
+         * @member {number}
+         */
+        this.height = 0;
+        this.value = value;
+        this.left = left;
+        this.right = right;
+        this.height = height;
+    }
+}
+exports.TreeNode = TreeNode;
+/**
+ * AVL Tree
+ *
+ *
+ * @public
+ * @constructor
+ */
+class AVLTree {
+    constructor() {
+        this.root = null;
+    }
+    /**
+     * Insert the node into the AVL tree at given node. If not provided, root will be consider as current. &lt;br>&lt;br>
+     * Time Complexity: O(logN) in the average case and O(N) in worst case.
+     *
+     * @public
+     * @method
+     * @param value value that needs to be inserted
+     * @param current Current Node
+     * @returns void
+     */
+    insert(value, current = null) {
+        if (!this.root) {
+            this.root = new TreeNode(value, null, null, 1);
+            return;
+        }
+        current = current || this.root;
+        let insertKey;
+        if (current.value > value) {
+            insertKey = 'left';
+        }
+        else {
+            insertKey = 'right';
+        }
+        if (current &amp;&amp; !current[insertKey]) {
+            current[insertKey] = new TreeNode(value, null, null, 0);
+        }
+        else {
+            this.insert(value, current[insertKey]);
+        }
+    }
+    /**
+     * Given the root of a binary tree, invert the tree, and return its root.
+     * &lt;br />
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> [4, 2, 7, 1, 3, 6, 9]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> [4, 7, 2, 9, 6, 3, 1]
+     * &lt;br />
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/invert-binary-tree/|Invert Binary Tree}
+     *
+     * @public
+     *
+     * @returns {TreeNode} Inverted AVL tree
+     */
+    invert() {
+        function invert(root) {
+            if (!root) {
+                return null;
+            }
+            const left = root.left;
+            root.left = invert(root.right);
+            root.right = invert(left);
+            return root;
+        }
+        return invert(this.root);
+    }
+    /**
+     * Given the root of a binary tree, return its maximum depth/height.
+     * &lt;br />&lt;br />
+     * A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> [3, 9, 20, null, null, 15, 7]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 3
+     * &lt;br />
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/maximum-depth-of-binary-tree/|Maximum Depth of Binary Tree}
+     *
+     * @public
+     *
+     * @returns {Number} Diameter of AVL tree
+     */
+    getHeight() {
+        function maxDepth(root) {
+            if (!root) {
+                return 0;
+            }
+            return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+        }
+        return maxDepth(this.root);
+    }
+    /**
+     * Given the root of a binary tree, return the length of the diameter of the tree
+     * &lt;br />&lt;br />
+     * The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> [1, 2, 3, 4, 5]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 3
+     * &lt;br />
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/diameter-of-binary-tree/|Diameter of Binary Tree}
+     *
+     * @public
+     *
+     * @returns {Number} Height of AVL tree
+     */
+    getDiameter() {
+        let ans = 0;
+        function diameterOfBinaryTree(root) {
+            if (!root) {
+                return 0;
+            }
+            const left = diameterOfBinaryTree(root.left);
+            const right = diameterOfBinaryTree(root.right);
+            ans = Math.max(left + right, ans);
+            return 1 + Math.max(left, right);
+        }
+        diameterOfBinaryTree(this.root);
+        return ans;
+    }
+    /**
+     * Given a binary tree, determine if it is height-balanced.
+     * &lt;br />&lt;br />
+     * a height-balanced binary tree is defined as:
+     * "a binary tree in which the left and right subtrees of every node differ in height by no more than 1."
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> [3, 9, 20, null, null, 15, 7]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> true
+     * &lt;br />
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/balanced-binary-tree/|Balanced Binary Tree}
+     *
+     * @public
+     *
+     * @returns {boolean} Tree is balanced or not
+     */
+    isBalanced() {
+        function checkBalanced(root) {
+            if (!root) {
+                return 0;
+            }
+            const left = checkBalanced(root.left);
+            if (left === -1)
+                return -1;
+            const right = checkBalanced(root.right);
+            if (right === -1)
+                return -1;
+            return Math.abs(left - right) > 1 ? -1 : 1 + Math.max(left, right);
+        }
+        return checkBalanced(this.root) > -1 ? true : false;
+    }
+    /**
+     * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+     * &lt;br />&lt;br />
+     * Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> p = [1, 2, 3], q = [1, 2, 3]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> true
+     * &lt;br />
+     *
+     * @static
+     * @function
+     * @see {@link https://leetcode.com/problems/same-tree/|Same Tree}
+     *
+     * @public
+     *
+     * @returns {boolean} Both trees are same or not
+     */
+    static isSameTree(tree1, tree2) {
+        function sameTree(root1, root2) {
+            if (!root1 &amp;&amp; !root2)
+                return true;
+            if (!root1 || !root2 || root1.value !== root2.value)
+                return false;
+            const isLTreeSame = sameTree(root1.left, root2.left);
+            const isRTreeSame = sameTree(root1.right, root2.right);
+            return isLTreeSame &amp;&amp; isRTreeSame;
+        }
+        return sameTree(tree1.root, tree2.root);
+    }
+}
+exports.AVLTree = AVLTree;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Sun Aug 28 2022 14:19:13 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
