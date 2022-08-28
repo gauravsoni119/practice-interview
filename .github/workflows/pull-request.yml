@@ -30,5 +30,8 @@ jobs:
       - name: Checking Linting
         run: npm run lint
 
+      - name: Running Test Cases
+        run: npm run test
+
       - name: Building Code
         run: npm run docs:build

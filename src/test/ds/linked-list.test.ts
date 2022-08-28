@@ -6,13 +6,6 @@ describe('Node', () => {
   });
 });
 
-describe('ListNode', () => {
-  it('should create a Node', () => {
-    const node = new ListNode('some data');
-    expect(node.data).toEqual('some data');
-  });
-});
-
 describe('LinkedList', () => {
   it('should insert items into linkedList', () => {
     const list = new LinkedList<number>();
@@ -52,7 +45,7 @@ describe('LinkedList', () => {
     list2.push(1);
     list2.push(3);
     list2.push(4);
-    const newList = list1.merge(list1, list2);
+    const newList = LinkedList.merge(list1, list2);
     let curr = newList?.first;
     const linkedListData = [];
     while (curr) {
@@ -65,7 +58,7 @@ describe('LinkedList', () => {
   it('should return empty list if two linkedLists are empty', () => {
     const list1 = new LinkedList<number>();
     const list2 = new LinkedList<number>();
-    const newList = list1.merge(list1, list2);
+    const newList = LinkedList.merge(list1, list2);
 
     expect(newList?.first).toBeNull();
   });

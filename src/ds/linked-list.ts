@@ -9,7 +9,6 @@
  * @module ds/linked-list
  *
  */
-// (function (exports) {
 
 /**
  * A node inside a linked list.
@@ -151,7 +150,8 @@ export class LinkedList<T> {
    * <b>Output:</b> 1 -> 1 -> 2 -> 3 -> 4 -> 4
    * <br />
    *
-   * @method
+   * @static
+   * @function
    * @see {@link https://leetcode.com/problems/merge-two-sorted-lists/|Merge Two Sorted Lists}
    *
    * @public
@@ -161,7 +161,7 @@ export class LinkedList<T> {
    * @returns {LinkedList} New list which has both the list merged in ascending order.
    */
 
-  merge(
+  static merge(
     list1: LinkedList<number>,
     list2: LinkedList<number>
   ): LinkedList<number> | null {
