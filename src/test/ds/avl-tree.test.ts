@@ -102,4 +102,36 @@ describe('AVLTree', () => {
 			expect(AVLTree.isSameTree(tree1, tree2)).toEqual(false);
 		});
 	});
+
+	describe('isSubTree', () => {
+		it('should return true if subRoot is exit in the tree', () => {
+			const tree1 = new AVLTree();
+			const tree2 = new AVLTree();
+			tree1.insert(2);
+			tree1.insert(1);
+			tree1.insert(3);
+			tree1.insert(5);
+			tree1.insert(6);
+			tree1.insert(7);
+			tree2.insert(5);
+			tree2.insert(6);
+			tree2.insert(7);
+			expect(AVLTree.isSubTree(tree1.root, tree2.root)).toEqual(true);
+		});
+
+		it('should return false if subRoot does not exit in the tree', () => {
+			const tree1 = new AVLTree();
+			const tree2 = new AVLTree();
+			tree1.insert(2);
+			tree1.insert(1);
+			tree1.insert(3);
+			tree1.insert(5);
+			tree1.insert(6);
+			tree1.insert(7);
+			tree2.insert(5);
+			tree2.insert(4);
+			tree2.insert(7);
+			expect(AVLTree.isSubTree(tree1.root, tree2.root)).toEqual(false);
+		});
+	});
 });

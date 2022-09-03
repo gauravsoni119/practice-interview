@@ -2,7 +2,11 @@
  * Linked List
  *
  * @example
- * const linkedList = require('linked-list');
+ * import { LinkedList } from '../../ds/linked-list';
+ * const list = new LinkedList<number>();
+ * list.push(1);
+ * list.push(2);
+ * list.push(3);
  *
  * @author Gaurav Soni
  *
@@ -64,7 +68,7 @@ export class LinkedList<T> {
 
 	/**
 	 * Given the head of a singly linked list, reverse the list, and return the reversed list.
-	 * <br />
+	 * <br />binary
 	 * For example,
 	 * <br />
 	 * <b>Input:</b> 1 -> 2 -> 3 -> 4 -> 5

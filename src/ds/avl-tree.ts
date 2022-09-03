@@ -1,12 +1,19 @@
 /**
- * Binary Tree
+ * AVL Tree
  *
  * @example
- * const linkedList = require('binary-tree');
+ * import { AVLTree } from '../../ds/avl-tree';
+ *
+ * const avl = new AVLTree();
+ * avl.insert(10);
+ * avl.insert(5);
+ * avl.insert(8);
+ * avl.insert(4);
+ * avl.insert(6);
  *
  * @author Gaurav Soni
  *
- * @module ds/binary-tree
+ * @module ds/avl-tree
  *
  */
 
@@ -55,7 +62,6 @@ export class TreeNode<T> {
 
 /**
  * AVL Tree
- *
  *
  * @public
  * @constructor
@@ -221,6 +227,53 @@ export class AVLTree<T> {
 	}
 
 	/**
+	 * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+	 * <br /><br />
+	 * A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+	 * For example,
+	 * <br />
+	 * <b>Input:</b> root = [3, 4, 5, 1, 2], subRoot = [4, 1, 2]
+	 * <br />
+	 * <b>Output:</b> true
+	 * <br />
+	 *
+	 * @static
+	 * @function
+	 * @see {@link https://leetcode.com/problems/subtree-of-another-tree/|Subtree of Another Tree}
+	 *
+	 * @public
+	 * @param {TreeNode} root root of AVL tree
+	 * @param {TreeNode} subRoot subRoot of AVL tree
+	 *
+	 * @returns {boolean} true if subTree is a tree of another tree otherwise false
+	 */
+
+	static isSubTree<T>(
+		root: TreeNode<T> | null,
+		subRoot: TreeNode<T> | null
+	): boolean {
+		function subTree(
+			_root: TreeNode<T> | null,
+			_subRoot: TreeNode<T> | null
+		): boolean {
+			if (!_root && !_subRoot) return true;
+			if (!_root || !_subRoot || _root.value !== _subRoot.value) return false;
+			return (
+				subTree(_root.left, _subRoot.left) &&
+				subTree(_root.right, _subRoot.right)
+			);
+		}
+		if (!root) {
+			return false;
+		}
+		if (subTree(root, subRoot)) return true;
+		return (
+			AVLTree.isSubTree(root.left, subRoot) ||
+			AVLTree.isSubTree(root.right, subRoot)
+		);
+	}
+
+	/**
 	 * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 	 * <br /><br />
 	 * Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
@@ -236,6 +289,9 @@ export class AVLTree<T> {
 	 * @see {@link https://leetcode.com/problems/same-tree/|Same Tree}
 	 *
 	 * @public
+	 *
+	 * @param {AVLTree} tree1 First AVL tree
+	 * @param {AVLTree} tree2 Second AVL tree
 	 *
 	 * @returns {boolean} Both trees are same or not
 	 */
