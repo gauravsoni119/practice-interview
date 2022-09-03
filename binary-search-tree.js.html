@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>avl-tree.js - Documentation</title>
+    <title>binary-search-tree.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">avl-tree.js</h1>
+    <h1 class="page-title">binary-search-tree.js</h1>
     
 
     
@@ -41,25 +41,24 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 /**
- * AVL Tree
+ * Binary Search Tree
  *
  * @example
- * import { AVLTree } from '../../ds/avl-tree';
- *
- * const avl = new AVLTree();
- * avl.insert(10);
- * avl.insert(5);
- * avl.insert(8);
- * avl.insert(4);
- * avl.insert(6);
+ * import { BinarySearchTree } from '../../ds/binary-search-tree';
+ * const bst = new BinarySearchTree();
+ * bst.insert(10);
+ * bst.insert(5);
+ * bst.insert(8);
+ * bst.insert(4);
+ * bst.insert(6);
  *
  * @author Gaurav Soni
  *
- * @module ds/avl-tree
+ * @module ds/binary-tree
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AVLTree = exports.TreeNode = void 0;
+exports.BinarySearchTree = exports.TreeNode = void 0;
 /**
  * A node inside a AV: tree.
  *
@@ -95,15 +94,16 @@ exports.TreeNode = TreeNode;
 /**
  * AVL Tree
  *
+ *
  * @public
  * @constructor
  */
-class AVLTree {
+class BinarySearchTree {
     constructor() {
         this.root = null;
     }
     /**
-     * Insert the node into the AVL tree at given node. If not provided, root will be consider as current. &lt;br>&lt;br>
+     * Insert the node into the binary tree at given node. If not provided, root will be consider as current. &lt;br>&lt;br>
      * Time Complexity: O(logN) in the average case and O(N) in worst case.
      *
      * @public
@@ -133,201 +133,45 @@ class AVLTree {
         }
     }
     /**
-     * Given the root of a binary tree, invert the tree, and return its root.
-     * &lt;br />
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> [4, 2, 7, 1, 3, 6, 9]
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> [4, 7, 2, 9, 6, 3, 1]
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/invert-binary-tree/|Invert Binary Tree}
-     *
-     * @public
-     *
-     * @returns {TreeNode} Inverted AVL tree
-     */
-    invert() {
-        function invert(root) {
-            if (!root) {
-                return null;
-            }
-            const left = root.left;
-            root.left = invert(root.right);
-            root.right = invert(left);
-            return root;
-        }
-        return invert(this.root);
-    }
-    /**
-     * Given the root of a binary tree, return its maximum depth/height.
+     * Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST
      * &lt;br />&lt;br />
-     * A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
      * For example,
      * &lt;br />
-     * &lt;b>Input:&lt;/b> [3, 9, 20, null, null, 15, 7]
+     * &lt;b>Input:&lt;/b> root = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], p = 2, q = 8
      * &lt;br />
-     * &lt;b>Output:&lt;/b> 3
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/maximum-depth-of-binary-tree/|Maximum Depth of Binary Tree}
-     *
-     * @public
-     *
-     * @returns {Number} Diameter of AVL tree
-     */
-    getHeight() {
-        function maxDepth(root) {
-            if (!root) {
-                return 0;
-            }
-            return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-        }
-        return maxDepth(this.root);
-    }
-    /**
-     * Given the root of a binary tree, return the length of the diameter of the tree
-     * &lt;br />&lt;br />
-     * The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> [1, 2, 3, 4, 5]
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> 3
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/diameter-of-binary-tree/|Diameter of Binary Tree}
-     *
-     * @public
-     *
-     * @returns {Number} Height of AVL tree
-     */
-    getDiameter() {
-        let ans = 0;
-        function diameterOfBinaryTree(root) {
-            if (!root) {
-                return 0;
-            }
-            const left = diameterOfBinaryTree(root.left);
-            const right = diameterOfBinaryTree(root.right);
-            ans = Math.max(left + right, ans);
-            return 1 + Math.max(left, right);
-        }
-        diameterOfBinaryTree(this.root);
-        return ans;
-    }
-    /**
-     * Given a binary tree, determine if it is height-balanced.
-     * &lt;br />&lt;br />
-     * a height-balanced binary tree is defined as:
-     * "a binary tree in which the left and right subtrees of every node differ in height by no more than 1."
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> [3, 9, 20, null, null, 15, 7]
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> true
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/balanced-binary-tree/|Balanced Binary Tree}
-     *
-     * @public
-     *
-     * @returns {boolean} Tree is balanced or not
-     */
-    isBalanced() {
-        function checkBalanced(root) {
-            if (!root) {
-                return 0;
-            }
-            const left = checkBalanced(root.left);
-            if (left === -1)
-                return -1;
-            const right = checkBalanced(root.right);
-            if (right === -1)
-                return -1;
-            return Math.abs(left - right) > 1 ? -1 : 1 + Math.max(left, right);
-        }
-        return checkBalanced(this.root) > -1 ? true : false;
-    }
-    /**
-     * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
-     * &lt;br />&lt;br />
-     * A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> root = [3, 4, 5, 1, 2], subRoot = [4, 1, 2]
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> true
+     * &lt;b>Output:&lt;/b> 6
      * &lt;br />
      *
      * @static
      * @function
-     * @see {@link https://leetcode.com/problems/subtree-of-another-tree/|Subtree of Another Tree}
-     *
-     * @public
-     * @param {TreeNode} root root of AVL tree
-     * @param {TreeNode} subRoot subRoot of AVL tree
-     *
-     * @returns {boolean} true if subTree is a tree of another tree otherwise false
-     */
-    static isSubTree(root, subRoot) {
-        function subTree(_root, _subRoot) {
-            if (!_root &amp;&amp; !_subRoot)
-                return true;
-            if (!_root || !_subRoot || _root.value !== _subRoot.value)
-                return false;
-            return (subTree(_root.left, _subRoot.left) &amp;&amp;
-                subTree(_root.right, _subRoot.right));
-        }
-        if (!root) {
-            return false;
-        }
-        if (subTree(root, subRoot))
-            return true;
-        return (AVLTree.isSubTree(root.left, subRoot) ||
-            AVLTree.isSubTree(root.right, subRoot));
-    }
-    /**
-     * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
-     * &lt;br />&lt;br />
-     * Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> p = [1, 2, 3], q = [1, 2, 3]
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> true
-     * &lt;br />
-     *
-     * @static
-     * @function
-     * @see {@link https://leetcode.com/problems/same-tree/|Same Tree}
+     * @see {@link https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/|Lowest Common Ancestor of a Binary Search Tree}
      *
      * @public
      *
-     * @param {AVLTree} tree1 First AVL tree
-     * @param {AVLTree} tree2 Second AVL tree
+     * @param {TreeNode} root root of binary search tree
+     * @param {TreeNode} p First tree node
+     * @param {TreeNode} q Second tree node
      *
-     * @returns {boolean} Both trees are same or not
+     * @returns {number} Lowest common ancestor between two nodes
      */
-    static isSameTree(tree1, tree2) {
-        function sameTree(root1, root2) {
-            if (!root1 &amp;&amp; !root2)
-                return true;
-            if (!root1 || !root2 || root1.value !== root2.value)
-                return false;
-            const isLTreeSame = sameTree(root1.left, root2.left);
-            const isRTreeSame = sameTree(root1.right, root2.right);
-            return isLTreeSame &amp;&amp; isRTreeSame;
+    static lowestCommonAncestor(root, p, q) {
+        function _lowestCommonAncestor(root, _p, _q) {
+            if (!root)
+                return;
+            if (p.value &lt; root.value &amp;&amp; q.value &lt; root.value) {
+                return _lowestCommonAncestor(root.left, _p, _q);
+            }
+            else if (p.value > root.value &amp;&amp; q.value > root.value) {
+                return _lowestCommonAncestor(root.right, _p, _q);
+            }
+            else {
+                return root.value;
+            }
         }
-        return sameTree(tree1.root, tree2.root);
+        return _lowestCommonAncestor(root, p, q);
     }
 }
-exports.AVLTree = AVLTree;
+exports.BinarySearchTree = BinarySearchTree;
 </code></pre>
         </article>
     </section>
