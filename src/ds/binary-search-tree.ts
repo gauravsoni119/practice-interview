@@ -75,8 +75,8 @@ export class BinarySearchTree<T> {
 	 *
 	 * @public
 	 * @method
-	 * @param value value that needs to be inserted
-	 * @param current Current Node
+	 * @param {T} value value that needs to be inserted
+	 * @param {TreeNode} current Current Node
 	 * @returns void
 	 */
 	insert(value: T, current: TreeNode<T> | null = null): void {
