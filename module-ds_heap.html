@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TreeNode - Documentation</title>
+    <title>ds/heap - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">TreeNode</h1>
+    <h1 class="page-title">ds/heap</h1>
     
 
     
@@ -41,13 +41,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="module-ds_avl-tree.html">ds/avl-tree</a>~</span>
         
-        TreeNode
-        </h2>
-        
-            <div class="class-description"><p>A node inside a AV: tree.</p></div>
+            
         
     
 </header>
@@ -56,15 +51,13 @@
     <div class="container-overview">
     
         
+            <div class="description"><p><b>Binary Heap</b>
+A binary heap is the complete binary tree which satisfies the heap properties.</p></div>
+        
+
+        
+            
 <div class="section-method">
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="TreeNode"><span class="type-signature"></span>new TreeNode<span class="signature">(val)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
@@ -91,6 +84,13 @@
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Gaurav Soni</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -101,7 +101,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line30">line 30</a>
+        <a href="heap.js.html">heap.js</a>, <a href="heap.js.html#line2">line 2</a>
     </li></ul></dd>
     
 
@@ -120,56 +120,6 @@
 
 
 
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>unknown</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The value stored in the AV: tree</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -184,9 +134,24 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
 
+    <pre class="prettyprint"><code>import { Heap } from '../../ds/heap';
+const minHeap = new Heap&lt;number>((a, b) => b - a);
+minHeap.add(5);
+minHeap.add(2);
+minHeap.add(3);
+minHeap.add(7);
+
+console.log(minHeap.top); // 2
+console.log(minHeap.extract()); // 3
+console.log(minHeap.extract()); // 5</code></pre>
 
 </div>
+
+</div>
+        
     
     </div>
 
@@ -195,237 +160,18 @@
     
 
     
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-ds_heap-Heap.html">Heap</a></dt>
+            <dd></dd>
+        </dl>
+    
 
      
 
     
 
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
-
-
-
-
-<div class="description">
-    <p>Height of the node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line46">line 46</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="left"><span class="type-signature"></span>left<span class="type-signature"> :TreeNode</span></h4>
-
-
-
-
-<div class="description">
-    <p>Left node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line36">line 36</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>TreeNode</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="right"><span class="type-signature"></span>right<span class="type-signature"> :TreeNode</span></h4>
-
-
-
-
-<div class="description">
-    <p>Right node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="avl-tree.js.html">avl-tree.js</a>, <a href="avl-tree.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>TreeNode</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
     
 
     

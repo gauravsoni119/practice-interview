@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>linked-list.js - Documentation</title>
+    <title>heap.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">linked-list.js</h1>
+    <h1 class="page-title">heap.js</h1>
     
 
     
@@ -41,187 +41,221 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 /**
- * Linked List
+ * &lt;b>Binary Heap&lt;/b>
+ * A binary heap is the complete binary tree which satisfies the heap properties.
  *
  * @example
- * import { LinkedList } from '../../ds/linked-list';
- * const list = new LinkedList&lt;number>();
- * list.push(1);
- * list.push(2);
- * list.push(3);
+ * import { Heap } from '../../ds/heap';
+ * const minHeap = new Heap&lt;number>((a, b) => b - a);
+ * minHeap.add(5);
+ * minHeap.add(2);
+ * minHeap.add(3);
+ * minHeap.add(7);
+ *
+ * console.log(minHeap.top); // 2
+ * console.log(minHeap.extract()); // 3
+ * console.log(minHeap.extract()); // 5
  *
  * @author Gaurav Soni
  *
- * @module ds/linked-list
+ * @module ds/heap
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinkedList = exports.ListNode = void 0;
+exports.Heap = void 0;
 /**
- * A node inside a linked list.
- *
- * @public
- * @constructor
- *
- * @param {unknown} data - The value stored in the linked list
- */
-class ListNode {
-    constructor(data) {
-        /**
-         * Next node
-         * @member {ListNode}
-         */
-        this.next = null;
-        /**
-         * Previous node
-         * @member {ListNode}
-         */
-        this.prev = null;
-        this.data = data;
-    }
-}
-exports.ListNode = ListNode;
-/**
- * Linked list
+ * Heap
  *
  *
  * @public
  * @constructor
  */
-class LinkedList {
-    constructor() {
-        this.first = null;
-        this.last = null;
-    }
-    push(data) {
-        const node = new ListNode(data);
-        if (!this.first) {
-            this.first = this.last = node;
-        }
-        else {
-            const temp = this.last;
-            this.last = node;
-            temp.next = node;
-        }
+class Heap {
+    constructor(cmp) {
+        this.heap = [];
+        this.cmp = (a, b) => a - b;
+        this.cmp = cmp ? cmp : this.cmp;
     }
     /**
-     * Given the head of a singly linked list, reverse the list, and return the reversed list.
-     * &lt;br />binary
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> 1 -> 2 -> 3 -> 4 -> 5
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> 5 -> 4 -> 3 -> 2 -> 1
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/reverse-linked-list/|Reverse Linked List}
+     * Add the value into the heap. &lt;br />&lt;br />
+     * &lt;b>Time Complexity:&lt;/b> O(logN).
      *
      * @public
-     *
-     * @param {ListNode} head Head of linked list
-     * @returns {ListNode} Reversed linked list
+     * @method
+     * @param {T} value value that needs to be inserted
+     * @returns void
      */
-    reverse() {
-        if (!this.first || !this.first.next) {
-            return null;
-        }
-        let prev = null;
-        let curr = this.first;
-        while (curr !== null) {
-            const temp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        const temp = this.first;
-        this.first = this.last;
-        this.last = temp;
-        return this.first;
+    add(value) {
+        this.heap.push(value);
+        this.changeKey(this.heap.length - 1, value);
     }
     /**
-     * Given the head of a singly linked list, reverse the list, and return the reversed list.
-     * &lt;br />
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> 1 -> 2 -> 3 -> 4 -> 5
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> 5 -> 4 -> 3 -> 2 -> 1
-     * &lt;br />
-     *
-     * @method
-     * @see {@link https://leetcode.com/problems/reverse-linked-list/|Reverse Linked List}
+     * Remove the top most item from the heap. &lt;br />&lt;br />
+     * &lt;b>Time Complexity:&lt;/b> O(logN).
      *
      * @public
-     *
-     * @param {ListNode} head Head of linked list
-     * @returns {ListNode} Reversed linked list
+     * @method
+     * @returns {value} The top most item from the heap
      */
-    recursiveReverse() {
-        function inverse(head) {
-            if (!head || !head.next) {
-                return null;
+    extract() {
+        if (!this.heap.length) {
+            throw 'The heap is already empty!';
+        }
+        const removedItem = this.heap.shift();
+        this.heapify(0);
+        return removedItem;
+    }
+    /**
+     * Getter to get the top most item in the heap
+     */
+    get top() {
+        return this.heap[0];
+    }
+    /**
+     * Getter to get the size of the heap
+     */
+    get size() {
+        return this.heap.length;
+    }
+    /**
+     * Change the value of the key. It will update the value according to the heap type(min/max). &lt;br />&lt;br />
+     * &lt;b>Time Complexity:&lt;/b> O(logN).
+     *
+     * @public
+     * @method
+     * @returns {value} The top most item from the heap
+     *
+     */
+    changeKey(index, value) {
+        this.heap[index] = value;
+        let parent = this.getParentIndex(index);
+        while (parent >= 0 &amp;&amp;
+            this.cmp(this.heap[index], this.heap[parent]) > 0) {
+            this.swap(parent, index);
+            index = parent;
+            parent = this.getParentIndex(index);
+        }
+    }
+    heapify(index) {
+        let extra = index;
+        while (index &lt; this.heap.length - 1) {
+            const left = this.getLeftIndex(index);
+            const right = this.getRightIndex(index);
+            if (left &lt; this.heap.length &amp;&amp;
+                this.cmp(this.heap[left], this.heap[index]) > 0) {
+                extra = left;
             }
-            const newFirst = inverse(head.next);
-            head.next.next = head;
-            head.next = null;
-            return newFirst;
-        }
-        if (!this.first) {
-            return null;
-        }
-        inverse(this.first);
-        const temp = this.first;
-        this.first = this.last;
-        this.last = temp;
-        return this.first;
-    }
-    /**
-     * You are given the heads of two sorted linked lists list1 and list2.Merge the two lists in a one sorted list.
-     * The list should be made by splicing together the nodes of the first two lists.
-     * Return the head of the merged linked list.
-     * &lt;br />
-     * For example,
-     * &lt;br />
-     * &lt;b>Input:&lt;/b> list1 = 1 -> 2 -> 4 , list2 = 1 -> 3 -> 4
-     * &lt;br />
-     * &lt;b>Output:&lt;/b> 1 -> 1 -> 2 -> 3 -> 4 -> 4
-     * &lt;br />
-     *
-     * @static
-     * @function
-     * @see {@link https://leetcode.com/problems/merge-two-sorted-lists/|Merge Two Sorted Lists}
-     *
-     * @public
-     *
-     * @param {LinkedList} list1
-     * @param {LinkedList} list2
-     * @returns {LinkedList} New list which has both the list merged in ascending order.
-     */
-    static merge(list1, list2) {
-        const newList = new LinkedList();
-        let curr1 = list1.first;
-        let curr2 = list2.first;
-        if (!curr1 || !curr2) {
-            return newList;
-        }
-        while (curr1 &amp;&amp; curr2) {
-            if (curr1.data &lt;= curr2.data) {
-                newList.push(curr1.data);
-                curr1 = curr1.next;
+            if (right &lt; this.heap.length &amp;&amp;
+                this.cmp(this.heap[right], this.heap[index]) > 0 &amp;&amp;
+                this.cmp(this.heap[right], this.heap[left]) > 0) {
+                extra = right;
+            }
+            if (extra !== index) {
+                this.swap(index, extra);
+                index = extra;
             }
             else {
-                newList.push(curr2.data);
-                curr2 = curr2.next;
+                return;
             }
         }
-        if (newList.last) {
-            newList.last.next = curr1 || curr2;
+    }
+    getParentIndex(index) {
+        return Math.floor((index - 1) / 2);
+    }
+    getLeftIndex(index) {
+        return Math.floor(index * 2 + 1);
+    }
+    getRightIndex(index) {
+        return Math.floor(index * 2 + 2);
+    }
+    swap(a, b) {
+        [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+    }
+    /**
+     * Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+     * &lt;br />Implement KthLargest class:&lt;br />
+     * KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of integers nums.
+     * int add(int val) Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> ["KthLargest", "add", "add", "add", "add", "add"]
+     * [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> [null, 4, 5, 5, 8, 8]
+     * &lt;br />
+     * &lt;b>Time Complexity for constructor:&lt;/b> O(n*log(k)) &lt;br />
+     * T&lt;b>ime Complexity for add function:&lt;/b> O(n*log(k))
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/kth-largest-element-in-a-stream/|Kth Largest Element in a Stream}
+     *
+     * @public
+     *
+     * @param {number} k kth position of the element that needs to be returned
+     * @param {number[]} nums Stream of numbers
+     * @returns {Object} Object containing add method which will maintain the heap of 'k' size.
+     */
+    static kthLargestElement(k, nums) {
+        const minHeap = new Heap((a, b) => b - a);
+        for (const num of nums) {
+            minHeap.add(num);
+            if (minHeap.size > k) {
+                minHeap.extract();
+            }
         }
-        return newList;
+        return {
+            add: (num) => {
+                minHeap.add(num);
+                if (minHeap.size > k) {
+                    minHeap.extract();
+                }
+                return minHeap.top;
+            }
+        };
+    }
+    /**
+     * You are given an array of integers stones where stones[i] is the weight of the ith stone.
+     * &lt;br />Implement KthLargest class:&lt;br />
+     * We are playing a game with the stones. On each turn, we choose the heaviest two stones and smash them together.
+     * Suppose the heaviest two stones have weights x and y with x &lt;= y. The result of this smash is: &lt;br />
+     *  If x == y, both stones are destroyed, and &lt;br />
+     *  If x != y, the stone of weight x is destroyed, and the stone of weight y has new weight y - x.
+     * At the end of the game, there is at most one stone left.
+     * Return the weight of the last remaining stone. If there are no stones left, return 0.
+     * For example,
+     * &lt;br />
+     * &lt;b>Input:&lt;/b> stones = [2,7,4,1,8,1]
+     * &lt;br />
+     * &lt;b>Output:&lt;/b> 1
+     * &lt;br />
+     *
+     * &lt;b>Time Complexity:&lt;/b> O(n*log(n)) &lt;br />
+     *
+     * @method
+     * @see {@link https://leetcode.com/problems/last-stone-weight/|Last Stone Weight}
+     *
+     * @public
+     *
+     * @param {number[]} stones Stones where stones[i] is the weight of the ith stone.
+     * @returns {number} Weight of the last remaining stone.
+     */
+    static lastStoneWeight(stones) {
+        const maxHeap = new Heap();
+        for (const stone of stones) {
+            maxHeap.add(stone);
+        }
+        while (maxHeap.size > 1) {
+            const x = maxHeap.extract();
+            const y = maxHeap.extract();
+            const diff = x - y;
+            if (diff > 0) {
+                maxHeap.add(diff);
+            }
+        }
+        return maxHeap.size > 0 ? maxHeap.top : 0;
     }
 }
-exports.LinkedList = LinkedList;
+exports.Heap = Heap;
 </code></pre>
         </article>
     </section>
