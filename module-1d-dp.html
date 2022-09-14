@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Heap - Documentation</title>
+    <title>1d-dp - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Heap</h1>
+    <h1 class="page-title">1d-dp</h1>
     
 
     
@@ -41,13 +41,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="module-ds_heap.html">ds/heap</a>~</span>
         
-        Heap
-        </h2>
-        
-            <div class="class-description"><p>Heap</p></div>
+            
         
     
 </header>
@@ -56,15 +51,13 @@
     <div class="container-overview">
     
         
+            <div class="description"><p><b>1-D Dynamic Programing</b>
+List of common 1-D dynamic programing.</p></div>
+        
+
+        
+            
 <div class="section-method">
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Heap"><span class="type-signature"></span>new Heap<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
 
 
 
@@ -91,6 +84,13 @@
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Gaurav Soni</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -101,7 +101,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line32">line 32</a>
+        <a href="1d-dp_index.js.html">1d-dp/index.js</a>, <a href="1d-dp_index.js.html#line2">line 2</a>
     </li></ul></dd>
     
 
@@ -134,7 +134,19 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>import { climbStairs } from '../../1d-dp';
+
+console.log(climbStairs(2)); // 2
+console.log(climbStairs(3)); // 3
+console.log(climbStairs(6)); // 13</code></pre>
+
 </div>
+
+</div>
+        
     
     </div>
 
@@ -149,138 +161,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="size"><span class="type-signature"></span>size<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>Getter to get the size of the heap</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line76">line 76</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="top"><span class="type-signature"></span>top<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>Getter to get the top most item in the heap</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line70">line 70</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -291,26 +171,24 @@
 
     
 
-    <h4 class="name" id=".kthLargestElement"><span class="type-signature">(static) </span>kthLargestElement<span class="signature">(k, nums)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="~climbStairs"><span class="type-signature">(inner) </span>climbStairs<span class="signature">(n)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-<br />Implement KthLargest class:<br />
-KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of integers nums.
-int add(int val) Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
+    <p>You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+<br>
 For example,
 <br />
-<b>Input:</b> [&quot;KthLargest&quot;, &quot;add&quot;, &quot;add&quot;, &quot;add&quot;, &quot;add&quot;, &quot;add&quot;]
-[[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]
+<b>Input:</b> n = 5
 <br />
-<b>Output:</b> [null, 4, 5, 5, 8, 8]
+<b>Output:</b> 8
 <br />
-<b>Time Complexity for constructor:</b> O(n<em>log(k)) <br />
-T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
+<b>Time Complexity for constructor:</b> O(n) <br />
+<b>Space Complexity for constructor:</b> O(n) <br /></p>
 </div>
 
 
@@ -346,7 +224,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line157">line 157</a>
+        <a href="1d-dp_index.js.html">1d-dp/index.js</a>, <a href="1d-dp_index.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -356,7 +234,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">Kth Largest Element in a Stream</a></li>
+            <li><a href="https://leetcode.com/problems/climbing-stairs/">Climbing Stairs</a></li>
         </ul>
     </dd>
     
@@ -397,7 +275,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
 
         <tr>
             
-                <td class="name"><code>k</code></td>
+                <td class="name"><code>n</code></td>
             
 
             <td class="type">
@@ -414,33 +292,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
             
 
             <td class="description last">
-                <p>kth position of the element that needs to be returned</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>nums</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Array.&lt;number></code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>Stream of numbers</p>
+                <p>number of steps to reach the top</p>
                 
             </td>
         </tr>
@@ -473,7 +325,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
     </dt>
     <dd>
         
-<span class="param-type"><code>Object</code></span>
+<span class="param-type"><code>number</code></span>
 
 
     </dd>
@@ -481,7 +333,7 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
 
 
 <div class="param-desc">
-    <p>Object containing add method which will maintain the heap of 'k' size.</p>
+    <p>Number of ways one can climb the stairs</p>
 </div>
 
     
@@ -496,28 +348,26 @@ T<b>ime Complexity for add function:</b> O(n</em>log(k))</p>
 
     
 
-    <h4 class="name" id=".lastStoneWeight"><span class="type-signature">(static) </span>lastStoneWeight<span class="signature">(stones)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="~minCostClimbingStairs"><span class="type-signature">(inner) </span>minCostClimbingStairs<span class="signature">(cost)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>You are given an array of integers stones where stones[i] is the weight of the ith stone.
-<br />Implement KthLargest class:<br />
-We are playing a game with the stones. On each turn, we choose the heaviest two stones and smash them together.
-Suppose the heaviest two stones have weights x and y with x &lt;= y. The result of this smash is: <br />
-If x == y, both stones are destroyed, and <br />
-If x != y, the stone of weight x is destroyed, and the stone of weight y has new weight y - x.
-At the end of the game, there is at most one stone left.
-Return the weight of the last remaining stone. If there are no stones left, return 0.
+    <p>You are given an integer array cost where cost[i] is the cost of ith step on a staircase.
+Once you pay the cost, you can either climb one or two steps.</p>
+<p>You can either start from the step with index 0, or the step with index 1.
+Return the minimum cost to reach the top of the floor.
+<br>
 For example,
 <br />
-<b>Input:</b> stones = [2,7,4,1,8,1]
+<b>Input:</b> cost = [10,15,20]
 <br />
-<b>Output:</b> 1
-<br /></p>
-<p><b>Time Complexity:</b> O(n*log(n)) <br /></p>
+<b>Output:</b> 15
+<br />
+<b>Time Complexity for constructor:</b> O(n) <br />
+<b>Space Complexity for constructor:</b> O(n) <br /></p>
 </div>
 
 
@@ -553,7 +403,7 @@ For example,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line201">line 201</a>
+        <a href="1d-dp_index.js.html">1d-dp/index.js</a>, <a href="1d-dp_index.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -563,7 +413,7 @@ For example,
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><a href="https://leetcode.com/problems/last-stone-weight/">Last Stone Weight</a></li>
+            <li><a href="https://leetcode.com/problems/min-cost-climbing-stairs/">Min Cost Climbing Stairs</a></li>
         </ul>
     </dd>
     
@@ -604,7 +454,7 @@ For example,
 
         <tr>
             
-                <td class="name"><code>stones</code></td>
+                <td class="name"><code>cost</code></td>
             
 
             <td class="type">
@@ -621,7 +471,7 @@ For example,
             
 
             <td class="description last">
-                <p>Stones where stones[i] is the weight of the ith stone.</p>
+                <p>All cost to reach the top</p>
                 
             </td>
         </tr>
@@ -662,374 +512,7 @@ For example,
 
 
 <div class="param-desc">
-    <p>Weight of the last remaining stone.</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(value)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Add the value into the heap. <br /><br />
-<b>Time Complexity:</b> O(logN).</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>T</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>value that needs to be inserted</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-
-<div class="param-desc">
-    <p>void</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="changeKey"><span class="type-signature"></span>changeKey<span class="signature">()</span><span class="type-signature"> &rarr; {value}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Change the value of the key. It will update the value according to the heap type(min/max). <br /><br />
-<b>Time Complexity:</b> O(logN).</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line88">line 88</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>value</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>The top most item from the heap</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="extract"><span class="type-signature"></span>extract<span class="signature">()</span><span class="type-signature"> &rarr; {value}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Remove the top most item from the heap. <br /><br />
-<b>Time Complexity:</b> O(logN).</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line59">line 59</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>value</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>The top most item from the heap</p>
+    <p>Minimum cost required to reach the top</p>
 </div>
 
     
