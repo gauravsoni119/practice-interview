@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ListNode - Documentation</title>
+    <title>array - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListNode</h1>
+    <h1 class="page-title">array</h1>
     
 
     
@@ -41,13 +41,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="module-ds_linked-list.html">ds/linked-list</a>~</span>
         
-        ListNode
-        </h2>
-        
-            <div class="class-description"><p>A node inside a linked list.</p></div>
+            
         
     
 </header>
@@ -56,13 +51,124 @@
     <div class="container-overview">
     
         
+            <div class="description"><p><b>LeetCode -  Array Problems</b></p></div>
+        
+
+        
+            
+<div class="section-method">
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Gaurav Soni</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="array_search-in-rotated-sorted-array.js.html">array/search-in-rotated-sorted-array.js</a>, <a href="array_search-in-rotated-sorted-array.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>import { searchInRotatedArray } from '../../array';
+
+console.log(searchInRotatedArray([4,5,6,7,0,1,2], 0)); // 4</code></pre>
+
+</div>
+
+</div>
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
 <div class="section-method">
 
     
-    <h2>Constructor</h2>
-    
 
-    <h4 class="name" id="ListNode"><span class="type-signature"></span>new ListNode<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~searchInRotatedArray"><span class="type-signature">(inner) </span>searchInRotatedArray<span class="signature">(nums, target)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
@@ -101,12 +207,19 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line27">line 27</a>
+        <a href="array_search-in-rotated-sorted-array.js.html">array/search-in-rotated-sorted-array.js</a>, <a href="array_search-in-rotated-sorted-array.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/">Search in rotated array</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -145,13 +258,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>nums</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>unknown</code></span>
+<span class="param-type"><code>Array.&lt;number></code></span>
 
 
             
@@ -162,7 +275,33 @@
             
 
             <td class="description last">
-                <p>The value stored in the linked list</p>
+                <p>array of numbers.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>element to be searched.</p>
                 
             </td>
         </tr>
@@ -184,176 +323,35 @@
 
 
 
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
+<div class="section-returns">
+<h5>Returns:</h5>
 
         
-            
-<div class="section-members">
-<h4 class="name" id="next"><span class="type-signature"></span>next<span class="type-signature"> :ListNode</span></h4>
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>number</code></span>
 
 
-
-
-<div class="description">
-    <p>Next node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line33">line 33</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
 
+<div class="param-desc">
+    <p>Index of element otherwise -1</p>
+</div>
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>ListNode</code></span>
-
-
-        </li>
-    </ul>
-
-
+    
+</div>
 
 
 
 </div>
-
         
-            
-<div class="section-members">
-<h4 class="name" id="prev"><span class="type-signature"></span>prev<span class="type-signature"> :ListNode</span></h4>
-
-
-
-
-<div class="description">
-    <p>Previous node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>ListNode</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-    
-
     
 
     

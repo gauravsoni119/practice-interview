@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ListNode - Documentation</title>
+    <title>array/search-in-rotated-sorted-array.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,339 +29,139 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListNode</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-            <span class="ancestors"><a href="module-ds_linked-list.html">ds/linked-list</a>~</span>
-        
-        ListNode
-        </h2>
-        
-            <div class="class-description"><p>A node inside a linked list.</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="ListNode"><span class="type-signature"></span>new ListNode<span class="signature">(data)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line27">line 27</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>unknown</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The value stored in the linked list</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="next"><span class="type-signature"></span>next<span class="type-signature"> :ListNode</span></h4>
-
-
-
-
-<div class="description">
-    <p>Next node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line33">line 33</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>ListNode</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="prev"><span class="type-signature"></span>prev<span class="type-signature"> :ListNode</span></h4>
-
-
-
-
-<div class="description">
-    <p>Previous node</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_linked-list.js.html">ds/linked-list.js</a>, <a href="ds_linked-list.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>ListNode</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <h1 class="page-title">array/search-in-rotated-sorted-array.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * &lt;b>LeetCode -  Array Problems&lt;/b>
+ *
+ * @example
+ * import { searchInRotatedArray } from '../../array';
+ *
+ * console.log(searchInRotatedArray([4,5,6,7,0,1,2], 0)); // 4
+ *
+ * @author Gaurav Soni
+ *
+ * @module array
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.searchWithOneBinarySearch = exports.searchWithPivotAndShift = exports.searchInRotatedArray = void 0;
+/**
+ * @public
+ *
+ * &lt;b>Time Complexity:&lt;/b> O(log(n)) &lt;br />
+ *
+ * @see {@link https://leetcode.com/problems/search-in-rotated-sorted-array/|Search in rotated array}
+ *
+ * @public
+ *
+ * @param {number[]} nums array of numbers.
+ * @param {number} target element to be searched.
+ * @returns {number} Index of element otherwise -1
+ */
+function searchInRotatedArray(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    const n = nums.length;
+    while (left &lt;= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[mid] > nums[n - 1]) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    const index = binarySearch(0, left - 1);
+    return index !== -1 ? index : binarySearch(left, n - 1);
+    function binarySearch(left, right) {
+        while (left &lt;= right) {
+            const mid = Math.floor((left + right) / 2);
+            if (target == nums[mid])
+                return mid;
+            if (target &lt; nums[mid]) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+}
+exports.searchInRotatedArray = searchInRotatedArray;
+function searchWithPivotAndShift(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    const n = nums.length;
+    while (left &lt;= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[mid] > nums[n - 1]) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    return binarySearch(left);
+    function binarySearch(pivot) {
+        const n = nums.length;
+        let left = 0;
+        let right = n - 1;
+        while (left &lt;= right) {
+            const mid = Math.floor((left + right) / 2);
+            if (target == nums[(pivot + mid) % n])
+                return (pivot + mid) % n;
+            if (target &lt; nums[(pivot + mid) % n]) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+}
+exports.searchWithPivotAndShift = searchWithPivotAndShift;
+function searchWithOneBinarySearch(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    while (left &lt;= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (target == nums[mid])
+            return mid;
+        if (nums[left] &lt;= nums[mid]) {
+            if (target &lt; nums[left] || target > nums[mid]) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+        else {
+            if (target > nums[right] || target &lt; nums[mid]) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+    }
+    return -1;
+}
+exports.searchWithOneBinarySearch = searchWithOneBinarySearch;
+</code></pre>
+        </article>
+    </section>
 
 
 
