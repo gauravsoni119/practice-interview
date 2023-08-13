@@ -1,6 +1,6 @@
 {
     "source": {
-        "include": ["./dist/ds", "./dist/1d-dp"],
+        "include": ["./dist/ds", "./dist/1d-dp", "./dist/array"],
         "includePattern": ".+\\.js$",
         "excludePattern": "(node_modules/|docs)"
     },
