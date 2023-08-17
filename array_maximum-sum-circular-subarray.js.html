@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ds/heap - Documentation</title>
+    <title>array/maximum-sum-circular-subarray.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,159 +29,68 @@
 
 <div id="main">
     
-    <h1 class="page-title">ds/heap</h1>
+    <h1 class="page-title">array/maximum-sum-circular-subarray.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p><b>Binary Heap</b>
-A binary heap is the complete binary tree which satisfies the heap properties.</p></div>
-        
-
-        
-            
-<div class="section-method">
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Gaurav Soni</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>import { Heap } from '../../ds/heap';
-const minHeap = new Heap&lt;number>((a, b) => b - a);
-minHeap.add(5);
-minHeap.add(2);
-minHeap.add(3);
-minHeap.add(7);
-
-console.log(minHeap.top); // 2
-console.log(minHeap.extract()); // 3
-console.log(minHeap.extract()); // 5</code></pre>
-
-</div>
-
-</div>
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-ds_heap-Heap.html">Heap</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * &lt;b>LeetCode -  Array Problems&lt;/b>
+ *
+ * @example
+ * import { maxSubarraySumCircular } from '../../array';
+ *
+ * console.log(maxSubarraySumCircular([5,-3,5]); // 10
+ *
+ * @author Gaurav Soni
+ *
+ * @module array
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.maxSubarraySumCircular = void 0;
+/**
+ * @public
+ * The algor is based on the Kadane's algo. For more details, check notes.
+ *
+ * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
+ *
+ * @see {@link https://leetcode.com/problems/maximum-sum-circular-subarray/|Maximum Sum Circular Subarray}
+ *
+ * @public
+ *
+ * @param {number[]} nums array of numbers.
+ * @returns {number} Max subarray sum in circular array
+ */
+function maxSubarraySumCircular(nums) {
+    let total = 0;
+    let globalMax = nums[0];
+    let globalMin = nums[0];
+    let currSum = 0;
+    let currMin = 0;
+    for (const num of nums) {
+        total += num;
+        currMin = Math.min(currMin, 0);
+        currMin += num;
+        globalMin = Math.min(currMin, globalMin);
+        currSum = Math.max(currSum, 0);
+        currSum += num;
+        globalMax = Math.max(currSum, globalMax);
+    }
+    if (total == globalMin)
+        return globalMax;
+    return Math.max(globalMax, total - globalMin);
+}
+exports.maxSubarraySumCircular = maxSubarraySumCircular;
+</code></pre>
+        </article>
+    </section>
 
 
 
