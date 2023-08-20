@@ -14,7 +14,7 @@
 
 /**
  * @public
- * The algor is based on the Kadane's algo. For more details, check notes.
+ * The algo is based on the Kadane's algo. For more details, check notes.
  *
  * <b>Time Complexity:</b> O(n) <br />
  *
