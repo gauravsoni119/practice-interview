@@ -14,13 +14,12 @@
 
 /**
  * @public
+ *
  * The algo is based on the two pointer approach. For more details, check notes.
  *
  * <b>Time Complexity:</b> O(n) <br />
  *
  * @see {@link https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/|Count Pairs Whose Sum is Less than Target}
- *
- * @public
  *
  * @param {number[]} nums array of numbers.
  * @returns {number} Number of pairs whose sum less than target

@@ -14,13 +14,12 @@
 
 /**
  * @public
+ *
  * The algo is based on the Kadane's algo and sliding window pattern. For more details, check notes.
  *
  * <b>Time Complexity:</b> O(n) <br />
  *
  * @see {@link https://leetcode.com/problems/longest-turbulent-subarray/|Longest Turbulent Subarray}
- *
- * @public
  *
  * @param {number[]} arr array of numbers.
  * @returns {number} Length of subarray with maximum turbulence
