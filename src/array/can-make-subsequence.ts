@@ -14,13 +14,12 @@
 
 /**
  * @public
+ *
  * The algo is based on the two pointer approach. For more details, check notes.
  *
  * <b>Time Complexity:</b> O(n) <br />
  *
  * @see {@link https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/|Make String a Subsequence Using Cyclic Increments}
- *
- * @public
  *
  * @param {string} str1 main string.
  * @param {string} str2 substring

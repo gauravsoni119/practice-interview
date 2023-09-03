@@ -14,13 +14,12 @@
 
 /**
  * @public
+ *
  * The algo is based on the Kadane's algo. For more details, check notes.
  *
  * <b>Time Complexity:</b> O(n) <br />
  *
  * @see {@link https://leetcode.com/problems/maximum-sum-circular-subarray/|Maximum Sum Circular Subarray}
- *
- * @public
  *
  * @param {number[]} nums array of numbers.
  * @returns {number} Max subarray sum in circular array

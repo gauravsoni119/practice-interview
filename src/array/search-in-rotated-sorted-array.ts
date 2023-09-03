@@ -19,8 +19,6 @@
  *
  * @see {@link https://leetcode.com/problems/search-in-rotated-sorted-array/|Search in rotated array}
  *
- * @public
- *
  * @param {number[]} nums array of numbers.
  * @param {number} target element to be searched.
  * @returns {number} Index of element otherwise -1
