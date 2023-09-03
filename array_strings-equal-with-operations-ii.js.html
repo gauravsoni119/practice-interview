@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ds/heap - Documentation</title>
+    <title>array/strings-equal-with-operations-ii.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,159 +29,73 @@
 
 <div id="main">
     
-    <h1 class="page-title">ds/heap</h1>
+    <h1 class="page-title">array/strings-equal-with-operations-ii.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p><b>Binary Heap</b>
-A binary heap is the complete binary tree which satisfies the heap properties.</p></div>
-        
-
-        
-            
-<div class="section-method">
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Gaurav Soni</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>import { Heap } from '../../ds/heap';
-const minHeap = new Heap&lt;number>((a, b) => b - a);
-minHeap.add(5);
-minHeap.add(2);
-minHeap.add(3);
-minHeap.add(7);
-
-console.log(minHeap.top); // 2
-console.log(minHeap.extract()); // 3
-console.log(minHeap.extract()); // 5</code></pre>
-
-</div>
-
-</div>
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-ds_heap-Heap.html">Heap</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * &lt;b>LeetCode -  Array Problems&lt;/b>
+ *
+ * @example
+ * import { checkStrings } from '../../array';
+ *
+ * console.log(checkStrings('abcdba', 'cabdab'); // true
+ *
+ * @author Gaurav Soni
+ *
+ * @module array
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkStrings = void 0;
+/**
+ * @public
+ *
+ * The algo is based on the counting char pattern. For more details, check notes.
+ *
+ * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
+ * &lt;b>Space Complexity:&lt;/b> O(n) &lt;br />
+ *
+ * @see {@link https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/description/|Check if Strings Can be Made Equal With Operations II}
+ *
+ * @param {string} s1 string.
+ * @param {string} s2 string
+ * @returns {boolean} true if s1 can be made equal to s2 after operations, otherwise false
+ *
+ */
+function checkStrings(s1, s2) {
+    const s1MapEven = new Array(26).fill(0);
+    const s2MapEven = new Array(26).fill(0);
+    const s1MapOdd = new Array(26).fill(0);
+    const s2MapOdd = new Array(26).fill(0);
+    for (let index = 0; index &lt; s1.length; index++) {
+        if (index % 2 == 0) {
+            s1MapEven[s1.charCodeAt(index) - 'a'.charCodeAt(0)]++;
+            s2MapEven[s2.charCodeAt(index) - 'a'.charCodeAt(0)]++;
+        }
+        else {
+            s1MapOdd[s1.charCodeAt(index) - 'a'.charCodeAt(0)]++;
+            s2MapOdd[s2.charCodeAt(index) - 'a'.charCodeAt(0)]++;
+        }
+    }
+    for (let index = 0; index &lt; s1MapEven.length; index++) {
+        if (s1MapEven[index] !== s2MapEven[index] ||
+            s1MapOdd[index] !== s2MapOdd[index])
+            return false;
+    }
+    return true;
+}
+exports.checkStrings = checkStrings;
+</code></pre>
+        </article>
+    </section>
 
 
 

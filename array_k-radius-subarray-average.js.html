@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ds/heap - Documentation</title>
+    <title>array/k-radius-subarray-average.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,159 +29,83 @@
 
 <div id="main">
     
-    <h1 class="page-title">ds/heap</h1>
+    <h1 class="page-title">array/k-radius-subarray-average.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p><b>Binary Heap</b>
-A binary heap is the complete binary tree which satisfies the heap properties.</p></div>
-        
-
-        
-            
-<div class="section-method">
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Gaurav Soni</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>import { Heap } from '../../ds/heap';
-const minHeap = new Heap&lt;number>((a, b) => b - a);
-minHeap.add(5);
-minHeap.add(2);
-minHeap.add(3);
-minHeap.add(7);
-
-console.log(minHeap.top); // 2
-console.log(minHeap.extract()); // 3
-console.log(minHeap.extract()); // 5</code></pre>
-
-</div>
-
-</div>
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-ds_heap-Heap.html">Heap</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * &lt;b>LeetCode -  Array Problems&lt;/b>
+ *
+ * @example
+ * import { getAverages } from '../../array';
+ *
+ * console.log(getAverages([7,4,3,9,1,8,5,2,6], 3); // [-1,-1,-1,5,4,4,-1,-1,-1]
+ *
+ * @author Gaurav Soni
+ *
+ * @module array
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAveragesV1 = exports.getAverages = void 0;
+/**
+ * @public
+ *
+ * The algo is based on the sliding window pattern. For more details, check notes.
+ *
+ * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
+ *
+ * @see {@link https://leetcode.com/problems/k-radius-subarray-averages/|K Radius Subarray Averages}
+ *
+ * @param {number[]} nums array of numbers.
+ * @param {k} k radius around which average needs to be calculated.
+ * @returns {number} List of average of k radius
+ *
+ */
+function getAverages(nums, k) {
+    let left = 0;
+    let right = 0;
+    const res = new Array(nums.length).fill(-1);
+    let sum = 0;
+    while (right &lt; nums.length) {
+        sum += nums[right];
+        if (right - left + 1 >= k * 2 + 1) {
+            const avg = k * 2 + 1;
+            res[left + k] = Math.floor(sum / avg);
+            sum -= nums[left];
+            left++;
+        }
+        right++;
+    }
+    return res;
+}
+exports.getAverages = getAverages;
+function getAveragesV1(nums, k) {
+    if (k == 0)
+        return nums;
+    const prefixSum = new Array(nums.length + 1).fill(0);
+    const res = new Array(nums.length).fill(-1);
+    for (let index = 0; index &lt; nums.length; index++) {
+        prefixSum[index + 1] = prefixSum[index] + nums[index];
+    }
+    console.log(prefixSum);
+    for (let index = k; index &lt; nums.length - k; index++) {
+        const sum = prefixSum[index + k + 1] - prefixSum[index - k];
+        res[index] = Math.floor(sum / (k * 2 + 1));
+    }
+    return res;
+}
+exports.getAveragesV1 = getAveragesV1;
+</code></pre>
+        </article>
+    </section>
 
 
 

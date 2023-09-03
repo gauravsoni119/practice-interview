@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ds/heap - Documentation</title>
+    <title>array/longest-repeating-char-replacement.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,159 +29,72 @@
 
 <div id="main">
     
-    <h1 class="page-title">ds/heap</h1>
+    <h1 class="page-title">array/longest-repeating-char-replacement.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p><b>Binary Heap</b>
-A binary heap is the complete binary tree which satisfies the heap properties.</p></div>
-        
-
-        
-            
-<div class="section-method">
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Gaurav Soni</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ds_heap.js.html">ds/heap.js</a>, <a href="ds_heap.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>import { Heap } from '../../ds/heap';
-const minHeap = new Heap&lt;number>((a, b) => b - a);
-minHeap.add(5);
-minHeap.add(2);
-minHeap.add(3);
-minHeap.add(7);
-
-console.log(minHeap.top); // 2
-console.log(minHeap.extract()); // 3
-console.log(minHeap.extract()); // 5</code></pre>
-
-</div>
-
-</div>
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-ds_heap-Heap.html">Heap</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * &lt;b>LeetCode -  Array Problems&lt;/b>
+ *
+ * @example
+ * import { characterReplacement } from '../../array';
+ *
+ * console.log(characterReplacement('ABAB', 2); // 4
+ *
+ * @author Gaurav Soni
+ *
+ * @module array
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.characterReplacement = void 0;
+/**
+ * @public
+ *
+ * The algo is based on the sliding window pattern. For more details, check notes.
+ *
+ * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
+ *
+ * @see {@link https://leetcode.com/problems/longest-repeating-character-replacement/|Longest Repeating Character Replacement}
+ *
+ * @param {string} s string.
+ * @param {k} k number upto which max replacements are allowed
+ * @returns {number} length of the longest substring
+ *
+ */
+function characterReplacement(s, k) {
+    let left = 0;
+    let right = 0;
+    let res = 0;
+    const map = new Map();
+    while (right &lt; s.length) {
+        if (!map.has(s[right])) {
+            map.set(s[right], 1);
+        }
+        else {
+            map.set(s[right], map.get(s[right]) + 1);
+        }
+        const count = Math.max(...map.values());
+        while (right - left + 1 - count > k) {
+            map.set(s[left], map.get(s[left]) - 1);
+            left++;
+        }
+        res = Math.max(res, right - left + 1);
+        right++;
+    }
+    return res;
+}
+exports.characterReplacement = characterReplacement;
+</code></pre>
+        </article>
+    </section>
 
 
 
