@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>array/longest-repeating-char-replacement.js - Documentation</title>
+    <title>array/trapping-rain-water.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">array/longest-repeating-char-replacement.js</h1>
+    <h1 class="page-title">array/trapping-rain-water.js</h1>
     
 
     
@@ -44,9 +44,9 @@
  * &lt;b>LeetCode -  Array Problems&lt;/b>
  *
  * @example
- * import { characterReplacement } from '../../array';
+ * import { trap } from '../../array';
  *
- * console.log(characterReplacement('ABAB', 2); // 4
+ * console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1]); // 6
  *
  * @author Gaurav Soni
  *
@@ -54,44 +54,41 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.characterReplacement = void 0;
+exports.trap = void 0;
 /**
  * @public
  *
- * The algo is based on the sliding window pattern. For more details, check notes.
+ * The algo is based on the prefix sum approach. For more details, check notes.
  *
  * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
+ * &lt;b>Space Complexity:&lt;/b> O(n) &lt;br />
  *
- * @see {@link https://leetcode.com/problems/longest-repeating-character-replacement/|Longest Repeating Character Replacement}
+ * @see {@link https://leetcode.com/problems/trapping-rain-water/|Trapping Rain Water}
  *
- * @param {string} s string.
- * @param {k} k number upto which max replacements are allowed
- * @returns {number} length of the longest substring
- *
+ * @param {number[]} height to define height at each point.
+ * @returns {number} Total trapped rain water
  */
-function characterReplacement(s, k) {
-    let left = 0;
-    let right = 0;
+function trap(height) {
+    const maxPrefix = new Array(height.length);
+    const maxSuffix = new Array(height.length);
     let res = 0;
-    const map = new Map();
-    while (right &lt; s.length) {
-        if (!map.has(s[right])) {
-            map.set(s[right], 1);
+    maxPrefix[0] = height[0];
+    maxSuffix[height.length - 1] = height[height.length - 1];
+    for (let index = 1; index &lt; height.length; index++) {
+        maxPrefix[index] = Math.max(height[index], maxPrefix[index - 1]);
+    }
+    for (let index = height.length - 2; index >= 0; index--) {
+        maxSuffix[index] = Math.max(height[index], maxSuffix[index + 1]);
+    }
+    for (let index = 0; index &lt; height.length; index++) {
+        const trappedWater = Math.min(maxPrefix[index], maxSuffix[index]) - height[index];
+        if (trappedWater >= 0) {
+            res += trappedWater;
         }
-        else {
-            map.set(s[right], map.get(s[right]) + 1);
-        }
-        const count = Math.max(...map.values());
-        while (right - left + 1 - count > k) {
-            map.set(s[left], map.get(s[left]) - 1);
-            left++;
-        }
-        res = Math.max(res, right - left + 1);
-        right++;
     }
     return res;
 }
-exports.characterReplacement = characterReplacement;
+exports.trap = trap;
 </code></pre>
         </article>
     </section>

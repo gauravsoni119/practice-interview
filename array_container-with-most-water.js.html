@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>array/longest-repeating-char-replacement.js - Documentation</title>
+    <title>array/container-with-most-water.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">array/longest-repeating-char-replacement.js</h1>
+    <h1 class="page-title">array/container-with-most-water.js</h1>
     
 
     
@@ -44,9 +44,9 @@
  * &lt;b>LeetCode -  Array Problems&lt;/b>
  *
  * @example
- * import { characterReplacement } from '../../array';
+ * import { maxArea } from '../../array';
  *
- * console.log(characterReplacement('ABAB', 2); // 4
+ * console.log(maxArea([1,8,6,2,5,4,8,3,7]); // 49
  *
  * @author Gaurav Soni
  *
@@ -54,44 +54,37 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.characterReplacement = void 0;
+exports.maxArea = void 0;
 /**
  * @public
  *
- * The algo is based on the sliding window pattern. For more details, check notes.
+ * The algo is based on the two pointer approach. For more details, check notes.
  *
  * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
  *
- * @see {@link https://leetcode.com/problems/longest-repeating-character-replacement/|Longest Repeating Character Replacement}
+ * @see {@link https://leetcode.com/problems/container-with-most-water/|Container With Most Water}
  *
- * @param {string} s string.
- * @param {k} k number upto which max replacements are allowed
- * @returns {number} length of the longest substring
- *
+ * @param {number[]} height to define start and end of container.
+ * @returns {number} Maximum container area
  */
-function characterReplacement(s, k) {
+function maxArea(height) {
+    let max = 0;
     let left = 0;
-    let right = 0;
-    let res = 0;
-    const map = new Map();
-    while (right &lt; s.length) {
-        if (!map.has(s[right])) {
-            map.set(s[right], 1);
-        }
-        else {
-            map.set(s[right], map.get(s[right]) + 1);
-        }
-        const count = Math.max(...map.values());
-        while (right - left + 1 - count > k) {
-            map.set(s[left], map.get(s[left]) - 1);
+    let right = height.length - 1;
+    while (left &lt; right) {
+        const min = Math.min(height[left], height[right]);
+        const area = (right - left) * min;
+        max = Math.max(max, area);
+        if (height[right] > height[left]) {
             left++;
         }
-        res = Math.max(res, right - left + 1);
-        right++;
+        else {
+            right--;
+        }
     }
-    return res;
+    return max;
 }
-exports.characterReplacement = characterReplacement;
+exports.maxArea = maxArea;
 </code></pre>
         </article>
     </section>
