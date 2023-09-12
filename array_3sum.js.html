@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>array/strings-equal-with-operations-ii.js - Documentation</title>
+    <title>array/3sum.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">array/strings-equal-with-operations-ii.js</h1>
+    <h1 class="page-title">array/3sum.js</h1>
     
 
     
@@ -44,9 +44,9 @@
  * &lt;b>LeetCode -  Array Problems&lt;/b>
  *
  * @example
- * import { checkStrings } from '../../array';
+ * import { threeSum } from '../../array';
  *
- * console.log(checkStrings('abcdba', 'cabdab'); // true
+ * console.log(threeSum([-1,0,1,2,-1,-4]); // [[-1,-1,2],[-1,0,1]]
  *
  * @author Gaurav Soni
  *
@@ -54,45 +54,51 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkStrings = void 0;
+exports.threeSum = void 0;
 /**
  * @public
  *
- * The algo is based on the counting char pattern. For more details, check notes.
+ * The algo is based on the two pointer approach. For more details, check notes.
  *
- * &lt;b>Time Complexity:&lt;/b> O(n) &lt;br />
- * &lt;b>Space Complexity:&lt;/b> O(n) &lt;br />
+ * &lt;b>Time Complexity:&lt;/b> O(n^2) &lt;br />
+ * &lt;b>Space Complexity:&lt;/b> O(1) &lt;br />
  *
- * @see {@link https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/description/|Check if Strings Can be Made Equal With Operations II}
+ * @see {@link https://leetcode.com/problems/3sum/description/|3Sum}
  *
- * @param {string} s1 string.
- * @param {string} s2 string
- * @returns {boolean} true if s1 can be made equal to s2 after operations, otherwise false
- *
+ * @param {number[]} nums array of numbers.
+ * @returns {number} array of triplet that results in 0
  */
-function checkStrings(s1, s2) {
-    const s1MapEven = new Array(26).fill(0);
-    const s2MapEven = new Array(26).fill(0);
-    const s1MapOdd = new Array(26).fill(0);
-    const s2MapOdd = new Array(26).fill(0);
-    for (let index = 0; index &lt; s1.length; index++) {
-        if (index % 2 == 0) {
-            s1MapEven[s1.charCodeAt(index) - 'a'.charCodeAt(0)]++;
-            s2MapEven[s2.charCodeAt(index) - 'a'.charCodeAt(0)]++;
-        }
-        else {
-            s1MapOdd[s1.charCodeAt(index) - 'a'.charCodeAt(0)]++;
-            s2MapOdd[s2.charCodeAt(index) - 'a'.charCodeAt(0)]++;
+function threeSum(nums) {
+    const res = [];
+    nums.sort((a, b) => a - b);
+    for (let index = 0; index &lt; nums.length; index++) {
+        if (index > 0 &amp;&amp; nums[index - 1] == nums[index])
+            continue;
+        const num = nums[index];
+        let left = index + 1;
+        let right = nums.length - 1;
+        while (left &lt; right) {
+            const twoSum = nums[left] + nums[right];
+            const threeSum = [num, nums[left], nums[right]];
+            if (num + twoSum == 0) {
+                res.push(threeSum);
+                while (left &lt; right &amp;&amp; nums[left] == nums[left + 1])
+                    left++;
+                while (left &lt; right &amp;&amp; nums[right] == nums[right - 1])
+                    right--;
+                left++;
+                right--;
+            }
+            else if (num + twoSum > 0) {
+                right--;
+            }
+            else
+                left++;
         }
     }
-    for (let index = 0; index &lt; s1MapEven.length; index++) {
-        if (s1MapEven[index] !== s2MapEven[index] ||
-            s1MapOdd[index] !== s2MapOdd[index])
-            return false;
-    }
-    return true;
+    return res;
 }
-exports.checkStrings = checkStrings;
+exports.threeSum = threeSum;
 </code></pre>
         </article>
     </section>
